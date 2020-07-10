@@ -18,3 +18,16 @@ CREATE TABLE posts(
 --ALTER TABLE users
 --ALTER password
 --SET DATA TYPE TEXT;
+
+
+
+--Inserted random data
+-- INSERT INTO users (
+--     username,
+--     password,
+--     profile_pic
+-- ) VALUES(
+--     'aaron2',
+--     'pass2',
+--     'https://robohash.org/pic2?set=set2'
+-- );
