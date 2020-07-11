@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import './Nav.css';
+import home from '/Users/aaronzakimi/Desktop/DevMountain/Weeks/Week-6/day-5/skills-check3/helo/src/img/home (1).svg';
+import logout from '/Users/aaronzakimi/Desktop/DevMountain/Weeks/Week-6/day-5/skills-check3/helo/src/img/logout.svg';
+import post from '/Users/aaronzakimi/Desktop/DevMountain/Weeks/Week-6/day-5/skills-check3/helo/src/img/post.svg';
 
 
 class Nav extends Component{
@@ -11,22 +15,24 @@ class Nav extends Component{
             <div>
                 {this.props.location.pathname !== '/'
                 ? (
-                    <div>
-                        <div>
-                            <Link to='/dashboard'>
-                                <button>Home</button>
-                            </Link>
-                            <Link to='/new'>
-                                <button>New Post</button>
-                            </Link>
-                            <Link to='/'>
-                                <button>Logout</button>
-                            </Link>
-                        </div>
-                        <section>
-                            <img src={this.props.user.profile_pic} alt={this.props.user.username}/>
-                            {this.props.user.username}
+                    <div  className='nav-bar'>
+                        <section className='info'>
+                            <img className='profile-pic' src={this.props.user.profile_pic} alt={this.props.user.username}/>
+                            <p className='profile-name'>{this.props.user.username}</p>
                         </section>
+                        <div className='link-container'>
+                            <div>
+                                <Link className='link1' to='/dashboard'>
+                                    <img src={home} alt='home button'/>
+                                </Link>
+                                <Link  className='link1' to='/new'>
+                                    <img src={post} alt='post button'/>
+                                </Link>
+                            </div>
+                                <Link  className='link2' to='/'>
+                                    <img src={logout} alt='logout button'/>
+                                </Link>
+                        </div>
                     </div>
                 )
                 : null}
