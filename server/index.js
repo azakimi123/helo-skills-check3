@@ -31,6 +31,7 @@ massive({
 //Authentication endpoints
 app.post('/auth/register', ctrl.register);
 app.post('/auth/login', ctrl.login);
+// app.get('/auth/userData', ctrl.getUserData);
 
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`))

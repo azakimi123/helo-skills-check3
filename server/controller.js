@@ -39,6 +39,20 @@ module.exports = {
         delete foundUser[0].password;
         req.session.user = foundUser[0];
         res.status(202).send(req.session.user);
-    }   
+    } ,
+    
+    getUserData: async (req, res) => {
+        const {username} = req.body;
+        const db = req.app.get('db');
+        const foundUser = await db.users.check_user({username});
+        if (foundUser[0]) {
+            delete foundUser[0].password;
+            req.session.user = foundUser[0];
+            const {user} = req.session;
+            res.status(202).send(req.session.user);
+        } else {
+            return res.sendStatus(401)
+        }
+    }
 }
 

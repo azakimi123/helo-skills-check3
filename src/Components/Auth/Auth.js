@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {getUser} from '../../ducks/reducer';
 
 
 class Auth extends Component{
@@ -16,20 +18,20 @@ class Auth extends Component{
 
 
     handleUsernameInput = (val) => {
-        this.setState({user: {...this.state.user, username: val}})
+        this.setState({username: val})
     }
 
     handlePasswordInput = (val) => {
-        this.setState({user: {...this.state.user, password: val}})
+        this.setState({password: val})
     }
 
     handleRegister = () => {
-        const {username, password} = this.state.user;
+        const {username, password} = this.state;
         if(password && username) {
-        axios.post('/auth/register', {username, password})
+        axios.pos('/auth/register', {username, password})
         .then(res => {
-            console.log(res.data)
-            this.setState({username: res.data.username, password: res.data.password});
+            // console.log(res.data)
+            this.props.getUser(res.data);
             this.props.history.push('/dashboard');
             })
         .catch(err => alert(err.response.request.response))
@@ -37,10 +39,10 @@ class Auth extends Component{
     }
 
     handleLogin = () => {
-        const {username, password} = this.state.user;
+        const {username, password} = this.state;
         axios.post('/auth/login', {username, password})
         .then(res => {
-            this.setState({username: res.data.username, password: res.data.password});
+            this.props.getUser(res.data);
             this.props.history.push('/dashboard');
         })
         .catch(err => alert(err.response.request.response))
@@ -48,15 +50,15 @@ class Auth extends Component{
 
 
     render(){
-        // console.log(this.state.user.username)
+        console.log(this.state.user.username)
         // console.log(this.state.user.password)
         return(
             <div>
                 <span>Username: </span><input
-                    value={this.state.user.username}
+                    value={this.state.username}
                     onChange={ (e) => this.handleUsernameInput(e.target.value)}/>
                 <span>Password: </span><input
-                    value={this.state.user.password}
+                    value={this.state.password}
                     type='password'
                     onChange={ (e) => this.handlePasswordInput(e.target.value)}/>
                 <button onClick={this.handleLogin}>Login</button>
@@ -66,5 +68,6 @@ class Auth extends Component{
     }
 }
 
+const mapStateToProps = reduxState => reduxState;
 
-export default Auth;
+export default connect(mapStateToProps, {getUser})(Auth);
