@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getUser} from '../../ducks/reducer';
+import './Auth.css';
 
 
 class Auth extends Component{
@@ -53,16 +54,29 @@ class Auth extends Component{
         console.log(this.state.user.username)
         // console.log(this.state.user.password)
         return(
-            <div>
-                <span>Username: </span><input
-                    value={this.state.username}
-                    onChange={ (e) => this.handleUsernameInput(e.target.value)}/>
-                <span>Password: </span><input
-                    value={this.state.password}
-                    type='password'
-                    onChange={ (e) => this.handlePasswordInput(e.target.value)}/>
-                <button onClick={this.handleLogin}>Login</button>
-                <button onClick={this.handleRegister}>Register</button>
+            <div className='auth-body'>
+                <div className='auth-box'>
+                    <section className='auth-title'>
+                        <h1>HELO</h1>
+                    </section>
+                    <section className='auth-input-container'>
+                        <div className='input'>
+                            <span className='text'>Username: </span><input
+                                value={this.state.username}
+                                onChange={ (e) => this.handleUsernameInput(e.target.value)}/>
+                        </div>
+                        <div className='input'>
+                            <span className='text'>Password: </span><input
+                                value={this.state.password}
+                                type='password'
+                                onChange={ (e) => this.handlePasswordInput(e.target.value)}/>
+                        </div>
+                    </section>
+                    <section className='auth-button'>
+                        <button className='button' onClick={this.handleLogin}>Login</button>
+                        <button className='button' onClick={this.handleRegister}>Register</button>
+                    </section>
+                </div>
             </div>
         )
     }
