@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './Nav.css';
-import home from '/Users/aaronzakimi/Desktop/DevMountain/Weeks/Week-6/day-5/skills-check3/helo/src/img/home (1).svg';
-import logout from '/Users/aaronzakimi/Desktop/DevMountain/Weeks/Week-6/day-5/skills-check3/helo/src/img/logout.svg';
-import post from '/Users/aaronzakimi/Desktop/DevMountain/Weeks/Week-6/day-5/skills-check3/helo/src/img/post.svg';
+import home from '../../img/home.svg';
+import logout from '../../img/logout.svg';
+import post from '../../img/post.svg';
 
 
 class Nav extends Component{
