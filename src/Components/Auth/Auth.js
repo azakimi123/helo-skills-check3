@@ -29,7 +29,7 @@ class Auth extends Component{
     handleRegister = () => {
         const {username, password} = this.state;
         if(password && username) {
-        axios.pos('/auth/register', {username, password})
+        axios.post('/auth/register', {username, password})
         .then(res => {
             // console.log(res.data)
             this.props.getUser(res.data);
