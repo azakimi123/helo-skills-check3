@@ -1,8 +1,7 @@
-.container{
+.input-container{
     width: 100vw;
-    height: 100vh;
     /* background: blue; */
     margin-left: 150px;
-    overflow: hidden;
+    /* overflow: hidden; */
     text-align: center;
 }

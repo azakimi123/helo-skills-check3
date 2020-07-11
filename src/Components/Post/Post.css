@@ -1,0 +1,22 @@
+.container{
+    overflow: hidden;
+}
+
+
+.post-card {
+    width: 600px;
+    height: 300px;
+    border: solid;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 500px;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.post-img{
+    width: 300px;
+    height: 200px;
+}
