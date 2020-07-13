@@ -48,11 +48,7 @@ class Dashboard extends Component{
     render(){
         // console.log(this.props.posts)
         // console.log(this.state.search)
-
-        let postList = this.state.posts.map((post, index) => (
-            <Post key={index} post={post}/>
-        ))
-        console.log(this.state.posts)
+        console.log(this.props)
         return(
             <div>
                 <section className='input-container'>
@@ -68,17 +64,19 @@ class Dashboard extends Component{
                         value={this.state.userPosts}/>
                 </section>
                 <div>
-                    {this.state.posts.map((post, index) => (
-                        <div className='post-container'>
-                            <section  className='post-card'>
-                                <p className='post-title'>{post.title}</p>
-                                <section className='right-post-card'>
-                                    <p className='post-auth'>{post.username}</p>
-                                    <img  className='post-img' src={post.profile_pic} alt={post.username}/>
-                                </section>
-                            </section>
-                        </div>
-                    ))}
+                        {this.state.posts.map((post, index) => (
+                            <Link to={`/api/post/${post.id}`}>
+                                <div className='post-container'>
+                                    <section  className='post-card'>
+                                        <p className='post-title'>{post.title}</p>
+                                        <section className='right-post-card'>
+                                            <p className='post-auth'>{post.username}</p>
+                                            <img  className='post-img' src={post.profile_pic} alt={post.username}/>
+                                        </section>
+                                    </section>
+                                </div>
+                            </Link>
+                        ))}
                 </div>
             </div>
         )
