@@ -40,19 +40,76 @@ module.exports = {
         req.session.user = foundUser[0];
         res.status(202).send(req.session.user);
     } ,
-    
-    getUserData: async (req, res) => {
-        const {username} = req.body;
+
+    getPosts: (req, res) => {
         const db = req.app.get('db');
-        const foundUser = await db.users.check_user({username});
-        if (foundUser[0]) {
-            delete foundUser[0].password;
-            req.session.user = foundUser[0];
-            const {user} = req.session;
-            res.status(202).send(req.session.user);
-        } else {
-            return res.sendStatus(401)
+        const {id} = req.params;
+        const{userPosts, title} = req.query;
+        console.log(req.params)
+        console.log(title)
+        console.log(req.query)
+
+        if(userPosts && title) {
+            return db.posts.get_post_search({title})
+            .then(posts => res.status(200).send(posts))
         }
+        if(!userPosts && !title) {
+            return db.posts.get_posts_id({id})
+            .then(posts => res.status(200).send(posts))
+        }
+        if(!userPosts && title) {
+            return db.posts.get_posts_id_title({id, title})
+            .then(posts => res.status(200).send(posts))
+        } 
+        if(userPosts && !title) {
+            return db.posts.get_all()
+            .then(post => res.status(200).send(posts))
+        }
+    },
+
+    onePost: (req, res) => {
+        const db = req.app.use('db');
+        const {id} = req.params;
+
+        db.posts.get_one_post({id})
+        .then(post => res.status(200).send(post))
     }
+    
+
 }
 
+// db.posts.get_posts_id({id})
+// .then(posts => res.status(200).send(posts))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // getUserData: async (req, res) => {
+    //     const {username} = req.body;
+    //     const db = req.app.get('db');
+    //     const foundUser = await db.users.check_user({username});
+    //     if (foundUser[0]) {
+    //         delete foundUser[0].password;
+    //         req.session.user = foundUser[0];
+    //         const {user} = req.session;
+    //         res.status(202).send(req.session.user);
+    //     } else {
+    //         return res.sendStatus(401)
+    //     }
+    // }

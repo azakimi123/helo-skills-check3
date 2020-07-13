@@ -9,23 +9,25 @@ class Post extends Component{
             title: '',
             img: '',
             content: '',
-            author: 'aaron6',
-            authorPic: 'https://image.flaticon.com/icons/svg/2948/2948218.svg'
+            author: '',
+            authorPic: ''
         }
     }
+
+
     render(){
-        console.log(this.props.post)
+        // console.log(this.props.post.title)
         return(
             <div>
-                <section >
+                {/* <section >
                     <section className='post-card'>
                         <h2  className='post-title'>{this.props.post.title}</h2>
                         <section  className='right-post-card'>
-                            <h3  className='post-auth'>by {this.state.author}</h3>
-                            <img src={this.state.authorPic} alt={this.state.author} className='post-img'/>
+                            <h3  className='post-auth'>by {this.props.post.username}</h3>
+                            <img src={this.props.post.profile_pic} alt={this.props.post.username} className='post-img'/>
                         </section>
                     </section>
-                </section>
+                </section> */}
             </div>
         )
     }

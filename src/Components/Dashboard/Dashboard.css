@@ -9,7 +9,44 @@
 }
 
 .post-container{
+    width: 100vw;
     display: flex;
     justify-content: center;
-    margin-left: 150px;
+    margin-left: 100px;
+    /* background: yellow; */
+}
+
+.post-card {
+    width: 600px;
+    height: 80px;
+    border: solid;
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+    /* margin-left: 500px; */
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    /* background: black; */
+}
+
+.right-post-card{
+    display: flex;
+    margin-right: -5px;
+}
+
+.post-title{
+    margin-left: 50px;
+}
+
+.post-auth{
+    margin-right: -20px;
+    margin-top: 50px;
+}
+
+
+.post-img{
+    width: 100px;
+    height: 50px;
+    margin-top: 20px;
 }

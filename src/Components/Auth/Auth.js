@@ -51,7 +51,7 @@ class Auth extends Component{
 
 
     render(){
-        console.log(this.state.user.username)
+        // console.log(this.state.user.username)
         // console.log(this.state.user.password)
         return(
             <div className='auth-body'>
