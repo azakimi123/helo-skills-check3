@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import Post from '../Post/Post';
+// import Post from '../Post/Post';
 import './Dashboard.css';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
@@ -34,10 +34,10 @@ class Dashboard extends Component{
     }
 
     componentDidMount = () => {
-        axios.get(`/api/posts/${this.props.user.id}?${this.state.userPosts}&title=${this.state.search}`)
+        axios.get(`/api/posts/${this.props.user.id}?userPosts${this.state.userPosts}&title=${this.state.search}`)
         .then(res => {
             this.setState({posts: res.data})
-            console.log(res.data)
+            // console.log(res.data)
         })
     }
 
@@ -48,7 +48,7 @@ class Dashboard extends Component{
     render(){
         // console.log(this.props.posts)
         // console.log(this.state.search)
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <div>
                 <section className='input-container'>
@@ -63,9 +63,11 @@ class Dashboard extends Component{
                         type="checkbox" 
                         value={this.state.userPosts}/>
                 </section>
+                {/* maps over posts to display in dashboard view */}
                 <div>
                         {this.state.posts.map((post, index) => (
-                            <Link to={`/api/post/${post.id}`}>
+                            
+                            <Link to={`/post/${post.id}`} className="link" key={index}>
                                 <div className='post-container'>
                                     <section  className='post-card'>
                                         <p className='post-title'>{post.title}</p>
@@ -78,6 +80,7 @@ class Dashboard extends Component{
                             </Link>
                         ))}
                 </div>
+                {/* <Post/> */}
             </div>
         )
     }
@@ -86,3 +89,4 @@ class Dashboard extends Component{
 const mapStateToProps = reduxState => reduxState;
 
 export default connect(mapStateToProps)(Dashboard);
+

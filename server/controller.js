@@ -45,9 +45,9 @@ module.exports = {
         const db = req.app.get('db');
         const {id} = req.params;
         const{userPosts, title} = req.query;
-        console.log(req.params)
-        console.log(title)
-        console.log(req.query)
+        // console.log(req.params)
+        // console.log(title)
+        // console.log(req.query)
 
         if(userPosts && title) {
             return db.posts.get_post_search({title})
@@ -63,17 +63,48 @@ module.exports = {
         } 
         if(userPosts && !title) {
             return db.posts.get_all()
-            .then(post => res.status(200).send(posts))
+            .then(posts => res.status(200).send(posts))
         }
     },
 
-    onePost: (req, res) => {
+    addPost: (req, res) => {
         const db = req.app.use('db');
         const {id} = req.params;
+        const {title, img, content, authorId} = req.body;
+        console.log(req.body)
+
+        db.posts.add_post({id, title, img, content, authorId})
+        .then(post => res.status(200).send(post))
+    },
+
+    getAllPosts: (req, res) => {
+        const db = req.app.use('db');
+
+        db.posts.get_all_post()
+        .then(posts => res.status(200).send(posts))
+    },
+
+    onePost: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+        console.log(id)
 
         db.posts.get_one_post({id})
         .then(post => res.status(200).send(post))
-    }
+        .catch(err => {res.status(500).send({errorMessage: 'Something went wrong'})
+        console.log(err)})
+        
+
+    },
+
+
+    // usersOnly: (req, res, next) => {
+    //     console.log(req.session.user)
+    //     if (!req.session.user) {
+    //         res.status(401).send('Please log in')
+    //     } 
+    //     next()
+    // }
     
 
 }

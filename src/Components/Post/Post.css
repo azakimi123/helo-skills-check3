@@ -1,45 +1,80 @@
-/* .container{
-    width: 200px;
-    height: 200px;
+.container2{
+    width: 100vw;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: grey;
+    /* background: grey; */
     text-align: center;
-} */
+}
 
 
-.post-card {
-    width: 600px;
-    height: 80px;
-    border: solid;
+.post-card2 {
+    width: 800px;
+    height: 500px;
     display: flex;
     justify-content: space-between;
-    /* flex-direction: column; */
-    /* margin-left: 500px; */
+    flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
     margin-top: 20px;
+    margin-left: 100px;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 3px 7px 0 rgba(0, 0, 0, 0.19);
 }
 
-.right-post-card{
+.post-card-top2{
+    width: 800px;
+    /* background: green; */
     display: flex;
-    margin-right: -5px;
+    justify-content: space-between;
+
 }
 
-.post-title{
-    margin-left: 50px;
+.post-card-right2{
+    display: flex;
 }
 
-.post-auth{
+.post-card-bottom2{
+    width: 800px;
+    height: 400px;
+    /* background: rgb(145, 128, 241); */
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.post-title2{
+    margin-left: 25px;
+    margin-top: 25px;
+    font-size: 35px;
+    color:  #ff9770;
+}
+
+.post-author2{
     margin-right: -20px;
     margin-top: 50px;
 }
 
-
-.post-img{
+.post-profile2{
     width: 100px;
     height: 50px;
     margin-top: 20px;
+}
+.post-img2{
+    width: 400px;
+    height: 300px;
+    margin-bottom: 45px;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.post-content2{
+    width: 300px;
+    height: 300px;
+    /* background: lightcoral; */
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 45px;
 }
