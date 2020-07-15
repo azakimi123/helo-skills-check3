@@ -11,10 +11,11 @@ class Form extends Component{
             img: '',
             content: ''
         }
+
+        this.handleTitleInput = this.handleTitleInput.bind(this);
     }
 
-
-    handleTitleInput = (title) => {
+    handleTitleInput(title) {
         this.setState({title: title})
     }
 
@@ -28,8 +29,8 @@ class Form extends Component{
 
 
     render(){
-
-        console.log(this.props)
+        console.log(this.state.title)
+        // console.log(this.props)
         return(
             <div className='container'>
                 <span>Title: </span><input
