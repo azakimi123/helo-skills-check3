@@ -29,26 +29,53 @@ class Dashboard extends Component{
                 
             ],
             search: '',
-            userPosts: true
+            userPosts: false
         }
     }
 
+    // componentDidMount = () => {
+    //     axios.get(`/api/posts/${this.props.user.id}?userPosts${this.state.userPosts}&title=${this.state.search}`)
+    //     .then(res => {
+    //         this.setState({posts: res.data})
+    //         // console.log(res.data)
+    //     })
+    // }
+
     componentDidMount = () => {
+            axios.get('/api/getAllPosts')
+            .then( res => {
+                this.setState({posts: res.data,})
+            })
+        }
+
+
+    userPosts = () => {
         axios.get(`/api/posts/${this.props.user.id}?userPosts${this.state.userPosts}&title=${this.state.search}`)
         .then(res => {
             this.setState({posts: res.data})
-            // console.log(res.data)
-        })
+        }) 
     }
+
 
     handleSearchInput = (val) => {
         this.setState({search: val})
+    }
+
+    handleUserpostCheckbox = () => {
+        this.setState({userPosts: !this.state.userPosts})
+        if(this.state.userPosts === false) {
+            this.userPosts();
+        } else {
+            this.componentDidMount();
+        }
     }
 
     render(){
         // console.log(this.props.posts)
         // console.log(this.state.search)
         // console.log(this.props)
+        console.log(this.state.userPosts)
+        // const displayUserPosts = this.userPosts();
         return(
             <div>
                 <section className='input-container'>
@@ -61,7 +88,8 @@ class Dashboard extends Component{
                     <span>My Posts</span>
                     <input 
                         type="checkbox" 
-                        value={this.state.userPosts}/>
+                        value={this.state.userPosts}
+                        onClick={this.handleUserpostCheckbox}/>
                 </section>
                 {/* maps over posts to display in dashboard view */}
                 <div>
@@ -80,7 +108,6 @@ class Dashboard extends Component{
                             </Link>
                         ))}
                 </div>
-                {/* <Post/> */}
             </div>
         )
     }

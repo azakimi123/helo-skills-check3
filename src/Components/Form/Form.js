@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Form.css';
+import axios from 'axios';
 
 
 class Form extends Component{
@@ -27,17 +28,25 @@ class Form extends Component{
         this.setState({content: content})
     }
 
+    handlPostButton = () => {
+        const {title, img, content} = this.state;
+        axios.post(`/api/addPost/${this.props.id}`, {title, img, content})
+        .then(() => {
+            this.props.history.push('/dashboard');
+        })
+    }
+
 
     render(){
         console.log(this.state.title)
-        // console.log(this.props)
+        console.log(this.props)
         return(
             <div className='container'>
                 <span>Title: </span><input
                     placeholder='Title'
                     value={this.state.title}
                     onChange={e => this.handleTitleInput(e.target.value)}/>
-                <img src={this.state.img} alt={this.state.title}/>
+                <img className='add-img' src={this.state.img} alt='post'/>
                 <span>Img URL: </span><input
                     placeholder='Image'
                     value={this.state.img}
@@ -46,7 +55,7 @@ class Form extends Component{
                     placeholder='Content'
                     value={this.state.content}
                     onChange={e => this.handleContentInput(e.target.value)}/>
-                <button>Post</button>
+                <button onClick={this.handlPostButton}>Post</button>
             </div>
         )
     }

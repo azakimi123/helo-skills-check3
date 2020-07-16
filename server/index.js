@@ -37,5 +37,6 @@ app.post('/auth/login', ctrl.login);
 app.get('/api/post/:id', ctrl.onePost);
 app.post('/api/addPost/:id', ctrl.addPost);
 app.get('/api/posts/:id', ctrl.getPosts);
+app.get('/api/getAllPosts', ctrl.getAllPosts)
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`))

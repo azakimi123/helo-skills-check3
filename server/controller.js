@@ -68,17 +68,17 @@ module.exports = {
     },
 
     addPost: (req, res) => {
-        const db = req.app.use('db');
+        const db = req.app.get('db');
         const {id} = req.params;
         const {title, img, content, authorId} = req.body;
         console.log(req.body)
 
-        db.posts.add_post({id, title, img, content, authorId})
+        db.posts.add_post({id, title, img, content, authorId: id})
         .then(post => res.status(200).send(post))
     },
 
     getAllPosts: (req, res) => {
-        const db = req.app.use('db');
+        const db = req.app.get('db');
 
         db.posts.get_all_post()
         .then(posts => res.status(200).send(posts))
