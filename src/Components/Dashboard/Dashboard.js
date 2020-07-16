@@ -96,9 +96,9 @@ class Dashboard extends Component{
                 <div>
                         {this.state.posts.map((post, index) => (
                             
-                            <Link to={`/post/${post.post_id}`} className="link" key={index}>
+                            <div className='post-container'>
+                                <Link to={`/post/${post.post_id}`} className="link" key={index}>
                                 
-                                <div className='post-container'>
                                     <section  className='post-card'>
                                         <p className='post-title'>{post.title}</p>
                                         <section className='right-post-card'>
@@ -106,8 +106,8 @@ class Dashboard extends Component{
                                             <img  className='post-img' src={post.profile_pic} alt={post.username}/>
                                         </section>
                                     </section>
-                                </div>
-                            </Link>
+                                </Link>
+                            </div>
                             
                         ))}
                 </div>
