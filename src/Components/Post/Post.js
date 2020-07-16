@@ -13,22 +13,33 @@ class Post extends Component{
             img: '',
             content: '',
             author: '',
-            authorPic: ''
+            authorPic: '',
+            authorId: null,
+            postId: null
         }
     }
 
     componentDidMount = () => {
         axios.get(`/api/post/${this.props.match.params.postid}`)
         .then(res => {
-            console.log(res.data[0])
+            // console.log(res.data[0])
             this.setState({
                 title: res.data[0].title,
                 img: res.data[0].img,
                 content: res.data[0].content,
                 author: res.data[0].username,
-                authorPic: res.data[0].profile_pic
+                authorPic: res.data[0].profile_pic,
+                authorId: res.data[0].id,
+                postId: res.data[0].post_id
             })
             // .catch(err => res.status(500).send(console.log(err)))
+        })
+    }
+
+    deletePost = () => {
+        axios.delete(`/api/post/${this.state.postId}`)
+        .then( () => {
+            this.props.history.push('/dashboard');
         })
     }
 
@@ -45,6 +56,7 @@ class Post extends Component{
                         </section>
                     </section>
                     <section className='post-card-bottom2'>
+                        {this.props.user.id === this.state.authorId ? <button onClick={this.deletePost}>Delete</button> : null}
                         <img className='post-img2' src={this.state.img} alt={this.state.title}/>
                         <p className='post-content2'>{this.state.content}</p>   
                     </section>

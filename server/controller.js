@@ -97,6 +97,15 @@ module.exports = {
 
     },
 
+    deletePost: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+
+        db.posts.delete_post({id})
+        .then( () => res.sendStatus(200))
+        .catch(err => console.log(err))
+    }
+
 
     // usersOnly: (req, res, next) => {
     //     console.log(req.session.user)

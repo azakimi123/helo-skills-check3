@@ -74,7 +74,8 @@ class Dashboard extends Component{
         // console.log(this.props.posts)
         // console.log(this.state.search)
         // console.log(this.props)
-        console.log(this.state.userPosts)
+        // console.log(this.state.userPosts)
+        // console.log(this.state.posts)
         // const displayUserPosts = this.userPosts();
         return(
             <div>
@@ -95,7 +96,8 @@ class Dashboard extends Component{
                 <div>
                         {this.state.posts.map((post, index) => (
                             
-                            <Link to={`/post/${post.id}`} className="link" key={index}>
+                            <Link to={`/post/${post.post_id}`} className="link" key={index}>
+                                
                                 <div className='post-container'>
                                     <section  className='post-card'>
                                         <p className='post-title'>{post.title}</p>
@@ -106,6 +108,7 @@ class Dashboard extends Component{
                                     </section>
                                 </div>
                             </Link>
+                            
                         ))}
                 </div>
             </div>
