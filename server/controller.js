@@ -28,7 +28,7 @@ module.exports = {
         //req.body info
         const {username, password} = req.body;
         const db = req.app.get('db');
-
+        
         //check to see if user is in database
         const foundUser = await db.users.check_user({username});
         if(!foundUser[0]) {
@@ -38,12 +38,13 @@ module.exports = {
         //set the user on the session
         delete foundUser[0].password;
         req.session.user = foundUser[0];
+        // console.log(req.session.user)
         res.status(202).send(req.session.user);
     } ,
 
     getPosts: (req, res) => {
         const db = req.app.get('db');
-        const {id} = req.params;
+        const {id} = req.session.user;
         const{userPosts, title} = req.query;
         // console.log(req.params)
         // console.log(title)
@@ -69,7 +70,7 @@ module.exports = {
 
     addPost: (req, res) => {
         const db = req.app.get('db');
-        const {id} = req.params;
+        const {id} = req.session.user;
         const {title, img, content, authorId} = req.body;
         console.log(req.body)
 
@@ -104,7 +105,24 @@ module.exports = {
         db.posts.delete_post({id})
         .then( () => res.sendStatus(200))
         .catch(err => console.log(err))
+    },
+
+    logout: (req, res) => {
+        console.log('log out worked')
+        req.session.destroy();
+        res.sendStatus(200)
+    },
+
+    getUserInfo: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.session.user;
+        console.log('user info retrieved')
+        db.users.get_user_info({id})
+        .then( info => res.status(200).send(info))
+        .catch(err => console.log(err))
     }
+
+
 
 
     // usersOnly: (req, res, next) => {

@@ -9,10 +9,9 @@ class Auth extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            user: {
-                username: '',
-                password: ''
-            }
+            username: '',
+            password: ''
+            
         }
     }
 
@@ -31,7 +30,7 @@ class Auth extends Component{
         if(password && username) {
         axios.post('/auth/register', {username, password})
         .then(res => {
-            // console.log(res.data)
+            console.log(res.data)
             this.props.getUser(res.data);
             this.props.history.push('/dashboard');
             })
@@ -43,6 +42,7 @@ class Auth extends Component{
         const {username, password} = this.state;
         axios.post('/auth/login', {username, password})
         .then(res => {
+            // console.log(res.data)
             this.props.getUser(res.data);
             this.props.history.push('/dashboard');
         })
@@ -53,6 +53,7 @@ class Auth extends Component{
     render(){
         // console.log(this.state.user.username)
         // console.log(this.state.user.password)
+        // console.log(this.props)
         return(
             <div className='auth-body'>
                 <div className='auth-box'>
